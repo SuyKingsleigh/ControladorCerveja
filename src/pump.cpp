@@ -1,9 +1,15 @@
 #include "pump.h"
 
-void pump_on(void (*f)(uint8_t, uint8_t)){
-    f(PUMP_PIN, PUMP_HIGH);
+void pump_on(){
+    digitalWrite(PUMP_PIN, HIGH);
 }
 
-void pump_off(void (*f)(uint8_t, uint8_t)){
-    f(PUMP_PIN, PUMP_LOW);
+
+void pump_off(){
+    digitalWrite(PUMP_PIN, LOW);
+}
+
+
+bool check_water_min_lvl(){
+    return digitalRead(TANK_SENSOR_PIN) == HIGH;
 }

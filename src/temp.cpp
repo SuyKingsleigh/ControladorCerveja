@@ -2,14 +2,16 @@
 
 
 
-float read_temp(int (*f)(uint8_t)){
-	return 500*(f)(TEMP_SENSOR_PIN)/1024;
+float read_temp(){
+	return (analogRead(TEMP_SENSOR_PIN)/1024.0)*500; // converte de mV para *C 
 }
 
-void set_heat(void (*f)(uint8_t, int), int power){
-	f(TEMP_HEATER_PIN, power);
+
+void pre_heat(){
+	set_heat(_MAX_POWER);
 }
 
-void pre_heat(void (*f)(uint8_t, int)){
-	set_heat(f,_MAX_POWER);
+
+void set_heat(int power){
+	analogWrite(TEMP_HEATER_PIN, (power*1024)/500); // converte de *C para mV
 }

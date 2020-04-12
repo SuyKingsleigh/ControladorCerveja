@@ -1,17 +1,11 @@
 #if !defined(PUMP)
 #define PUMP
 
-
 #include <stdint.h>
+#include "Arduino.h"
 
-//pins 
-#define PUMP_PIN 3
-#define TANK_SENSOR_PIN 4
-
-// defaults
-#define PUMP_HIGH 0x1
-#define PUMP_LOW 0x0
-// Modulo para organizaar as funcoes da bomba
+#define PUMP_PIN 10
+#define TANK_SENSOR_PIN 11
 
 
 /**
@@ -25,21 +19,18 @@ struct Receita{
 
 /**
  * Liga a bomba 
- * @param f: &digitalWrite
 */
-void pump_on(void (*f)(uint8_t, uint8_t));
+void pump_on();
 
 /**
  * Desliga a bomba 
- * @param f: &digitalWrite
 */
-void pump_off(void (*f)(uint8_t, uint8_t));
+void pump_off();
 
 /**
  * Sensor de nivel minimo. 
- * Retorna TRUE se esta ACIMA do nivel minimo (ou seja, podera ligar a resistenca)
- * @param f: &digitalRead
+ * @return Retorna TRUE se esta ACIMA do nivel minimo (ou seja, podera ligar a resistenca)
  */
-bool check_water_min_lvl(int (*f)(uint8_t));
+bool check_water_min_lvl();
 
 #endif // PUMP
