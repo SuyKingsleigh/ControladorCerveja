@@ -3,8 +3,8 @@
 
 // necessario para usar o uint8_t
 #include <stdint.h> 
-#define TEMP_SENSOR_PIN 1
-#define TEMP_HEATER_PIN 2
+#define TEMP_SENSOR_PIN 0
+#define TEMP_HEATER_PIN 1
 
 #define _MAX_POWER 100
 
