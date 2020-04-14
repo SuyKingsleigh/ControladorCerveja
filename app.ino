@@ -7,6 +7,7 @@
 Receita * recipe; 
 float t;
 
+bool status = HIGH;
 
 void print_temp(float &t){
     Serial.print("Temperatura: ");
@@ -34,6 +35,10 @@ void setup(){
 }
 
 void loop(){
-    t = read_temp();
-    print_temp(t);
+    // t = read_temp();
+    // print_temp(t);
+    Serial.println(status);
+    digitalWrite(TEMP_HEATER_PIN, status);
+    delay(1000);
+    status = !status;
 }

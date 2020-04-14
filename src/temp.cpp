@@ -8,19 +8,19 @@ float read_temp(){
 
 void pre_heat(){
 	_set_heat(_MAX_POWER);
-	while(read_temp() < MAX_TEMP_WATER) {;}
-}
+	while(read_temp() < MAX_TEMP_WATER) {;} 
+	_set_heat(_MIN_POWER);
 
 
-void _set_heat(int power){
-	analogWrite(TEMP_HEATER_PIN, (power*1024)/500); // converte de *C para mV
+void _set_heat(bool power){
+	digitalWrite(TEMP_HEATER_PIN, power);
 }
 
 
 void set_temp(float temp){
 	float t = read_temp();
 	if(t == temp) return;
-	if(t > temp){
+	if(t > temp){ 
 		_set_heat(_MIN_POWER);
 		while(read_temp() >= temp){;}
 	}else{

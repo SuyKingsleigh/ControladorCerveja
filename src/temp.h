@@ -7,13 +7,19 @@
 #include "pins_arduino.h"
 
 #define TEMP_SENSOR_PIN A0
-#define TEMP_HEATER_PIN A1
+#define TEMP_HEATER_PIN 13
 
-#define _MIN_POWER 0
-#define _MAX_POWER 100
-#define MAX_TEMP_WATER 95
+#define _MIN_POWER 0x0 // LOW 
+#define _MAX_POWER 0x1  // HIGH
+#define MAX_TEMP_WATER 95 // *C 
 
 // ************** Modulo para as funções relacionadas a controle/leitura de temperatura ***************//
+
+/** 
+ * O transistor faz o chaveamento do sinal de 5V(arduino) para 12V(fonte)
+ * O transistor protegerá o arduino da back EMF do relé
+ * O diodo também protegerá o transistor da back EMF do relé. 
+ */
 
 /**
  *  Funcao usada para ler a temperatura 
@@ -22,15 +28,15 @@
 float read_temp();
 
 /**
- * Funcao para pre aquecer, setara a potencia em 100% 
+ * Funcao para pré-aquecer.
  */
 void pre_heat();
 
 /**
- * Funcao para controlar a temperatura. 
- * @param power -> Potencia (0 a 100); 
+ * Funcao para controlar a resistência.
+ * @param power _MIN_POWER = Desliga, _MAX_POWER = Liga. 
 */
-void _set_heat(int power);
+void _set_heat(bool power);
 
 /**
  * Funcao para controlar a temperatura 
