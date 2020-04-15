@@ -10,6 +10,7 @@ void pre_heat(){
 	_set_heat(_MAX_POWER);
 	while(read_temp() < MAX_TEMP_WATER) {;} 
 	_set_heat(_MIN_POWER);
+}
 
 
 void _set_heat(bool power){

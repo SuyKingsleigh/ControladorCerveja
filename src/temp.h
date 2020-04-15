@@ -1,7 +1,6 @@
 #if !defined(TEMP)
 #define TEMP
 
-
 #include <stdint.h> 
 #include "Arduino.h"
 #include "pins_arduino.h"
@@ -13,7 +12,9 @@
 #define _MAX_POWER 0x1  // HIGH
 #define MAX_TEMP_WATER 95 // *C 
 
+
 // ************** Modulo para as funções relacionadas a controle/leitura de temperatura ***************//
+
 
 /** 
  * O transistor faz o chaveamento do sinal de 5V(arduino) para 12V(fonte)

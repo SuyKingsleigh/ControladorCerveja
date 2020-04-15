@@ -1,7 +1,7 @@
 #include "receita.h"
 
 
-Receita * auto_mode(){
+Receita * receita_default(){
     Receita * r;
     r->leveduras = DEF_LEVEDURAS;
     r->malte = DEF_MALTE;
