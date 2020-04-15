@@ -6,4 +6,5 @@ Receita * receita_default(){
     r->leveduras = DEF_LEVEDURAS;
     r->malte = DEF_MALTE;
     r->lupulo = DEF_LUPULO;
+    return r;
 }
