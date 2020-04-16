@@ -13,6 +13,8 @@
 
 /**
  *  Armazena os tempos (até três) da receita
+ *  aumentara a temperatura por ingrediente 
+ *  entao um nao pode ser menor que o anterior
 */
 struct Receita{
     uint8_t lupulo; 

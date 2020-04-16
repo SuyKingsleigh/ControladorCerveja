@@ -45,5 +45,9 @@ void _set_heat(bool power);
  */
 void set_temp(float temp);
 
+/**
+* Aumentara 1*C por minuto 
+*/
+void _raise_temp();
 
 #endif // TEMP
