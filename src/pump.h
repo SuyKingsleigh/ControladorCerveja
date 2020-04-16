@@ -9,6 +9,11 @@
 //****************** Modulo para organizar as funções da bomba ****************************//
 
 /**
+ * A bomba servirá para homogenizar.  
+ * a cerveja, ela ira fazer com que a água circule. 
+*/
+
+/**
  * Liga a bomba 
 */
 void pump_on();

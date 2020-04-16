@@ -3,8 +3,8 @@
 
 Receita * receita_default(){
     Receita * r;
-    r->leveduras = DEF_LEVEDURAS;
-    r->malte = DEF_MALTE;
-    r->lupulo = DEF_LUPULO;
+    r->a = ING_A;
+    r->b = ING_B;
+    r->c = ING_C;
     return r;
 }

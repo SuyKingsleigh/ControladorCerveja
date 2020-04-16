@@ -3,9 +3,9 @@
 
 #include <stdint.h>
 
-#define DEF_LUPULO 30
-#define DEF_MALTE 30 
-#define DEF_LEVEDURAS 30
+#define ING_A 30
+#define ING_B 40 
+#define ING_C 50
 
 
 //****************** Modulo para organizar os dados da receita *************************//
@@ -17,9 +17,9 @@
  *  entao um nao pode ser menor que o anterior
 */
 struct Receita{
-    uint8_t lupulo; 
-    uint8_t malte;
-    uint8_t leveduras; 
+    uint8_t a; 
+    uint8_t b;
+    uint8_t c; 
 };
 
 /**
@@ -27,5 +27,6 @@ struct Receita{
  * Para o uso no modo automático 
 */
 Receita * receita_default();
+
 
 #endif // RECEITA

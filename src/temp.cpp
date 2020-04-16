@@ -24,15 +24,14 @@ void set_temp(float temp){
 
 
 void _raise_temp(){
-	auto start = millis()*1000;
+	auto start = millis()/1000;
 	float desired_temp = read_temp() + 1; // temperatura desejada 
 
 	// fica nesse loop por 1 minuto 
-	while (((millis()*1000) - start) < 60){		
+	while (((millis()/1000) - start) < 60){		
 		// caso a temperatura medida seja maior que a desejada, desliga a resistencia
 		// caso contrario a liga 
 		(read_temp() >= desired_temp) ? _set_heat(_MIN_POWER) : _set_heat(_MAX_POWER); 
 		delay(100);
 	}
 }
-

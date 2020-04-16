@@ -49,7 +49,7 @@ bool set_mode(LiquidCrystal &lcd);
 /**
  * Usuario define a receita
 */
-Receita * set_receita(LiquidCrystal & lcd);
+Receita * set_receita(LiquidCrystal &lcd);
 
 /**
  * Usuario define modo 
