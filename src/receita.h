@@ -14,7 +14,6 @@
 /**
  *  Armazena os tempos (até três) da receita
  *  aumentara a temperatura por ingrediente 
- *  entao um nao pode ser menor que o anterior
 */
 struct Receita{
     uint8_t a; 
@@ -26,7 +25,7 @@ struct Receita{
  * Retorna uma receita com valores padrões 
  * Para o uso no modo automático 
 */
-Receita * receita_default();
+Receita receita_default();
 
 
 #endif // RECEITA

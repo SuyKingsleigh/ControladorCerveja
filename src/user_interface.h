@@ -23,13 +23,12 @@
 #define D6 6
 #define D7 7
 
+
 /**
  * Usará quatro botões, "mais", "menos", "ok" e "exit"
  * O fluxo será: 
  * > Escolher modo (manual ou automatico, + e - para escolher)
  * > Se manual: tempos dos ingredientes
- * Comportamento dos botões: 
- * Pressionado = False 
 */
 
 
@@ -38,8 +37,14 @@
 
 struct Config{
     bool mode; 
-    Receita * recipe;
+    Receita recipe;
 };
+
+/**
+ * Verifica se o botao esta pressionado 
+ * @return true se pressionado
+*/
+bool is_pressed(uint8_t btn);
 
 /**
  * Define o modo de operação 
@@ -47,19 +52,24 @@ struct Config{
 bool set_mode(LiquidCrystal &lcd);
 
 /**
+ * Extrai as temperaturas de cada um dos três ingredientes  
+*/
+int _get_temp(LiquidCrystal &lcd, const char * str);
+
+/**
  * Usuario define a receita
 */
-Receita * set_receita(LiquidCrystal &lcd);
+Receita set_receita(LiquidCrystal &lcd);
 
 /**
  * Usuario define modo 
  * e se for automatico, define tambem a receita 
 */
-Config * menu(LiquidCrystal &lcd);
+Config menu(LiquidCrystal &lcd);
 
 /**
  * Notificara o usuario de algum evento
 */
-void notify();
+void notify(LiquidCrystal &lcd);
 
 #endif // USER_INTERFACE

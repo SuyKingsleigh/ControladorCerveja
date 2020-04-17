@@ -5,13 +5,10 @@
 #include "src/user_interface.h"
 #include "src/receita.h"
 
-Receita * recipe; 
-Config * conf; 
+float t;
+Config conf; 
 
 LiquidCrystal lcd(RS, E, D4, D5, D6, D7);
-float t;
-
-bool status = HIGH;
 
 void print_temp(float &t){
     Serial.print("Temperatura: ");
@@ -19,7 +16,6 @@ void print_temp(float &t){
     Serial.print("*C");
     Serial.println();
 }
-
 
 void setup(){
     // pinos da temperatura 
@@ -42,13 +38,9 @@ void setup(){
 
     // apenas para debug 
     Serial.begin(9600);
+    delay(500);
 }
 
 void loop(){
-    // t = read_temp();
-    // print_temp(t);
-    // Serial.println(status);
-    // digitalWrite(TEMP_HEATER_PIN, status);
-    // delay(1000);
-    // status = !status;
+
 }
