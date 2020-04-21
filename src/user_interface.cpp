@@ -5,7 +5,7 @@ bool set_mode(LiquidCrystal &lcd){
     lcd.clear();
     lcd.print("manual ou automatico");
 
-    while(1){
+    while(true){
         if(digitalRead(UP)){
             lcd.clear();
             lcd.print("automatico");
@@ -61,8 +61,29 @@ Receita set_receita(LiquidCrystal &lcd){
 }
 
 
-void notify(){
-    // TODO
+// void _beep(){
+//     tone(BUZZER, 440);
+//     delay(2000);
+//     noTone(BUZZER);
+// }
+
+
+void notify(LiquidCrystal &lcd, const char * str){
+    lcd.clear();
+    lcd.println(str);
+    // _beep();
+    delay(1000);
+    lcd.clear();
+}
+
+
+void notify(LiquidCrystal &lcd, const char * str, bool block){
+    lcd.clear();
+    lcd.println(str);
+    // while(!digitalRead(ENTER)) _beep();
+    if (block) while(!digitalRead(ENTER)) {;}
+    delay(250);
+    lcd.clear();
 }
 
 
@@ -70,9 +91,6 @@ Config menu(LiquidCrystal &lcd){
     Config conf; 
     conf.mode = set_mode(lcd);
     lcd.clear();
-  
     conf.recipe = (conf.mode == AUTOMATICO) ? receita_default() : set_receita(lcd);
-
     return conf; 
 }
-

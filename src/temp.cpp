@@ -18,17 +18,38 @@ void _set_heat(bool power){
 }
 
 
-void set_temp(float temp){
-	while(read_temp() < temp) _raise_temp();
+void set_temp(float temp, LiquidCrystal &lcd){
+	// se for igual faz nada
+	// se for menor, esquenta 1C/min 
+	// se for maior desliga a resistencia e espera resfriar
+	lcd.clear();
+	if(temp == read_temp()) return;
+	else if(temp > read_temp())
+		while (temp > read_temp()){
+			// imrpime a temperatura 
+			lcd.print(read_temp());
+			lcd.print("*c");
+			_raise_temp(); // fica preso nesse loop por pelo menos 1 minuto 
+			lcd.clear();
+		}
+	else{
+		_set_heat(_MIN_POWER);
+		while(temp < read_temp()){
+			lcd.print(read_temp());
+			lcd.print("*c");
+			delay(300);
+			lcd.clear();
+		}
+	}
 }
 
 
 void _raise_temp(){
-	auto start = millis()/1000;
+	auto start = millis();
 	float desired_temp = read_temp() + 1; // temperatura desejada 
 
 	// fica nesse loop por 1 minuto 
-	while (((millis()/1000) - start) < 60){		
+	while (((millis()) - start) < MINUTO_MS){		
 		// caso a temperatura medida seja maior que a desejada, desliga a resistencia
 		// caso contrario a liga 
 		(read_temp() >= desired_temp) ? _set_heat(_MIN_POWER) : _set_heat(_MAX_POWER); 

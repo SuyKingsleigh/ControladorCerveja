@@ -2,20 +2,11 @@
 
 #include "src/temp.h"
 #include "src/pump.h"
-#include "src/user_interface.h"
 #include "src/receita.h"
+#include "src/user_interface.h"
 
-float t;
 Config conf; 
-
 LiquidCrystal lcd(RS, E, D4, D5, D6, D7);
-
-void print_temp(float &t){
-    Serial.print("Temperatura: ");
-    Serial.print(t);
-    Serial.print("*C");
-    Serial.println();
-}
 
 void setup(){
     // pinos da temperatura 
@@ -27,20 +18,40 @@ void setup(){
     pinMode(TANK_SENSOR_PIN, INPUT);
     
     // pinos do botoes
-    pinMode(ENTER, INPUT);
-    pinMode(EXIT, INPUT);
     pinMode(UP, INPUT);
     pinMode(LOW, INPUT);
+    pinMode(ENTER, INPUT);
 
-    // obtem as configuracoes 
+    // pinMode(BUZZER, OUTPUT);
     lcd.begin(16,2);
+
+    // pega a receita
     conf = menu(lcd);
 
-    // apenas para debug 
-    Serial.begin(9600);
-    delay(500);
+    // fica bloqueado ate encher o tanque de agua 
+    // quando estiver cheio, ferve a agua e liga a bomba
+    while(!check_water_min_lvl()) notify(lcd, "sem agua");
+    
+    notify(lcd, "Fervendo");
+    pre_heat();
+    pump_on();
+    notify(lcd, "Iniciando");
 }
 
 void loop(){
+    // Notifica para adicionar os igredientes
+    // controla a temperatura aumentando 1*C por min 
+    // quando termina os três ingredientes sinaliza o fim da receita 
+    notify(lcd, "ing 1", true);
+    set_temp(conf.recipe.a, lcd);
+    
+    notify(lcd, "ing 2", true);
+    set_temp(conf.recipe.b, lcd);
 
+    notify(lcd, "ing 3", true);
+    set_temp(conf.recipe.c, lcd);
+
+    // notifica fim
+    notify(lcd, "FIM", true);
+    pump_off();
 }

@@ -1,7 +1,6 @@
 #if !defined(USER_INTERFACE)
 #define USER_INTERFACE
 
-
 #include "receita.h"
 #include "Arduino.h"
 #include <LiquidCrystal.h>
@@ -11,7 +10,6 @@
 
 // botoes
 #define ENTER 8
-#define EXIT 9
 #define UP 10 
 #define LOW 11
 
@@ -23,12 +21,11 @@
 #define D6 6
 #define D7 7
 
-
 /**
- * Usará quatro botões, "mais", "menos", "ok" e "exit"
+ * Usará quatro botões, "mais", "menos" e "enter"
  * O fluxo será: 
  * > Escolher modo (manual ou automatico, + e - para escolher)
- * > Se manual: tempos dos ingredientes
+ * > Se manual: usará os botões + - e para controlar os tempos e 
 */
 
 
@@ -40,11 +37,6 @@ struct Config{
     Receita recipe;
 };
 
-/**
- * Verifica se o botao esta pressionado 
- * @return true se pressionado
-*/
-bool is_pressed(uint8_t btn);
 
 /**
  * Define o modo de operação 
@@ -57,19 +49,24 @@ bool set_mode(LiquidCrystal &lcd);
 int _get_temp(LiquidCrystal &lcd, const char * str);
 
 /**
- * Usuario define a receita
+ * Usuario definirá a receita
 */
 Receita set_receita(LiquidCrystal &lcd);
 
 /**
- * Usuario define modo 
- * e se for automatico, define tambem a receita 
+ * Usuario definirá modo 
+ * se for automático, define também a receita 
 */
 Config menu(LiquidCrystal &lcd);
 
 /**
- * Notificara o usuario de algum evento
+ * Notificará ao usuário algum evento
 */
-void notify(LiquidCrystal &lcd);
+void notify(LiquidCrystal &lcd, const char * str);
+
+/**
+ *  Ficará bloqueado até o usuário pressionar o ENTER
+*/
+void notify(LiquidCrystal &lcd, const char * str, bool block);
 
 #endif // USER_INTERFACE

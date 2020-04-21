@@ -3,9 +3,9 @@
 
 #include <stdint.h>
 
-#define ING_A 30
-#define ING_B 40 
-#define ING_C 50
+#define ING_A 70
+#define ING_B 75
+#define ING_C 80
 
 
 //****************** Modulo para organizar os dados da receita *************************//

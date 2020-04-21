@@ -3,17 +3,20 @@
 
 #include "Arduino.h"
 
-#define PUMP_PIN 10
-#define TANK_SENSOR_PIN 11
+#define PUMP_PIN 12
+#define TANK_SENSOR_PIN 9
 
 
 //****************** Modulo para organizar as funções da bomba ****************************//
 
 
 /**
- * A bomba servirá para homogenizar.  
- * a cerveja, ela ira fazer com que a água circule. 
+ * A bomba servirá para homogenizar a  cerveja. 
+ * Ela fara com que a água circule. 
+ * O circuito da bomba é praticamente igual ao da resistencia.
+ * O que mudaria seria a bomba de fato, o que não tem no proteus
 */
+
 
 /**
  * Liga a bomba 
