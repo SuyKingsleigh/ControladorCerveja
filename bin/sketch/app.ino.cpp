@@ -12,7 +12,7 @@ LiquidCrystal lcd(RS, E, D4, D5, D6, D7);
 
 #line 11 "/home/suy/Desktop/STE/ControladorCerveja/app.ino"
 void setup();
-#line 42 "/home/suy/Desktop/STE/ControladorCerveja/app.ino"
+#line 45 "/home/suy/Desktop/STE/ControladorCerveja/app.ino"
 void loop();
 #line 11 "/home/suy/Desktop/STE/ControladorCerveja/app.ino"
 void setup(){
@@ -37,12 +37,15 @@ void setup(){
 
     // fica bloqueado ate encher o tanque de agua 
     // quando estiver cheio, ferve a agua e liga a bomba
-    while(!check_water_min_lvl()) notify(lcd, "sem agua");
+    if(!check_water_min_lvl()) lcd.println("sem agua");
+    while(!check_water_min_lvl()){;}
     
+    lcd.clear();
     lcd.println("Esquentando");
     pre_heat();
-    lcd.clear();
+
     pump_on();
+    lcd.clear();
     lcd.println("Iniciando");
 }
 
