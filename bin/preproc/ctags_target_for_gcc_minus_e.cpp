@@ -1,28 +1,29 @@
-#include <LiquidCrystal.h>
+# 1 "/home/suy/Desktop/STE/ControladorCerveja/app.ino"
+# 2 "/home/suy/Desktop/STE/ControladorCerveja/app.ino" 2
 
-#include "src/temp.h"
-#include "src/pump.h"
-#include "src/receita.h"
-#include "src/user_interface.h"
+# 4 "/home/suy/Desktop/STE/ControladorCerveja/app.ino" 2
+# 5 "/home/suy/Desktop/STE/ControladorCerveja/app.ino" 2
+# 6 "/home/suy/Desktop/STE/ControladorCerveja/app.ino" 2
+# 7 "/home/suy/Desktop/STE/ControladorCerveja/app.ino" 2
 
-Config conf; 
-LiquidCrystal lcd(RS, E, D4, D5, D6, D7);
+Config conf;
+LiquidCrystal lcd(2, 3, 4, 5, 6, 7);
 
 void setup(){
     // pinos da temperatura 
-    pinMode(TEMP_SENSOR_PIN, INPUT);
-    pinMode(TEMP_HEATER_PIN, OUTPUT);
+    pinMode(A0, 0x0);
+    pinMode(13, 0x1);
 
     // pinos da bomba
-    pinMode(PUMP_PIN, OUTPUT);
-    pinMode(TANK_SENSOR_PIN, INPUT);
-    
-    // pinos do botoes
-    pinMode(UP, INPUT);
-    pinMode(LOW, INPUT);
-    pinMode(ENTER, INPUT);
+    pinMode(12, 0x1);
+    pinMode(9, 0x0);
 
-    pinMode(BUZZER, OUTPUT);
+    // pinos do botoes
+    pinMode(10, 0x0);
+    pinMode(11, 0x0);
+    pinMode(8, 0x0);
+
+    pinMode(A1, 0x1);
     lcd.begin(16,2);
 
     // pega a receita
@@ -31,7 +32,7 @@ void setup(){
     // fica bloqueado ate encher o tanque de agua 
     // quando estiver cheio, ferve a agua e liga a bomba
     while(!check_water_min_lvl()) notify(lcd, "sem agua");
-    
+
     lcd.println("Esquentando");
     pre_heat();
     lcd.clear();

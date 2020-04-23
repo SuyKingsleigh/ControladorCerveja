@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#line 1 "/home/suy/Desktop/STE/ControladorCerveja/app.ino"
 #include <LiquidCrystal.h>
 
 #include "src/temp.h"
@@ -8,6 +10,11 @@
 Config conf; 
 LiquidCrystal lcd(RS, E, D4, D5, D6, D7);
 
+#line 11 "/home/suy/Desktop/STE/ControladorCerveja/app.ino"
+void setup();
+#line 42 "/home/suy/Desktop/STE/ControladorCerveja/app.ino"
+void loop();
+#line 11 "/home/suy/Desktop/STE/ControladorCerveja/app.ino"
 void setup(){
     // pinos da temperatura 
     pinMode(TEMP_SENSOR_PIN, INPUT);
